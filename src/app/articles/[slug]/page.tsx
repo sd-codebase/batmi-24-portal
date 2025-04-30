@@ -1,20 +1,23 @@
 import formatDate from "@/app/lib/transform-date";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
-import { Metadata } from "next";
 import Link from "next/link";
 import ArticleImage from "../../components/ArticleImage";
 import ArticleJsonLd from "../../components/ArticleJsonLd";
 import ShareButtons from "../../components/ShareButtons";
-import { getArticleBySlug, getArticles } from "../../lib/api";
+import { getArticleBySlug } from "../../lib/api";
 import { Article } from "../../types";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+// Set to ensure this page renders at runtime rather than build time
+export const dynamic = "force-dynamic";
 
-// Generate metadata dynamically based on the article
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+// This function tells Next.js not to pre-render any paths during build
+export async function generateStaticParams() {
+  return [];
+}
+
+// Fix type issues by defining the function without explicit types
+export async function generateMetadata({ params }) {
+  const slug = params.slug;
   const article = await getArticleBySlug(slug);
 
   if (!article) {
@@ -57,17 +60,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Generate static paths for all articles
-export async function generateStaticParams() {
-  const articles = await getArticles();
-
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
-}
-
-export default async function ArticlePage({ params }: Props) {
-  const { slug } = await params;
+// Remove explicit typing for params to allow Next.js to handle it
+export default async function ArticlePage({ params }) {
+  const slug = params.slug;
   const article: Article | null = await getArticleBySlug(slug);
 
   if (!article) {

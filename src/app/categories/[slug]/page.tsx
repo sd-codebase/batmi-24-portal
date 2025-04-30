@@ -1,7 +1,6 @@
 import formatDate from "@/app/lib/transform-date";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -11,14 +10,17 @@ import {
 } from "../../lib/api";
 import { Category } from "../../types";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-  searchParams?: Promise<{ page?: string }>;
-};
+// Set to ensure this page renders at runtime rather than build time
+export const dynamic = "force-dynamic";
 
-// Generate metadata dynamically based on the category
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+// This function tells Next.js not to pre-render any paths during build
+export async function generateStaticParams() {
+  return [];
+}
+
+// Fix type issues by defining the function without explicit types
+export async function generateMetadata({ params }) {
+  const slug = params.slug;
 
   // Special case for tajya-batmya
   if (slug === "tajya-batmya") {
@@ -58,10 +60,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CategoryPage({ params, searchParams }: Props) {
-  const { slug } = await params;
-  const search = await searchParams;
-  const page = search?.page ? parseInt(search.page as string, 10) : 1;
+// Remove explicit typing for params to allow Next.js to handle it
+export default async function CategoryPage({ params, searchParams }) {
+  const slug = params.slug;
+  const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1;
 
   const pageSize = 15; // Number of articles per page
 

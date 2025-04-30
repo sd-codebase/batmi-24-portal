@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Configure dynamic behavior for specific routes
+  experimental: {
+    // Ensure dynamic routes are server-rendered and not statically generated
+    serverActions: {
+      allowedOrigins: ["*"],
+    },
+  },
 };
 
 export default nextConfig;

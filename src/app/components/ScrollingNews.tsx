@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_noStore } from "next/cache"; // Import unstable_noStore
 import { supabase } from "../lib/supabase";
 import { BoltIcon } from "@heroicons/react/24/solid";
 
@@ -50,6 +51,9 @@ async function ScrollingNews() {
 
 // Server-side data fetching function
 async function fetchScrollingNews(): Promise<NewsItem[]> {
+  // Opt out of static rendering / caching
+  unstable_noStore();
+
   try {
     const { data, error } = await supabase
       .from("articles")

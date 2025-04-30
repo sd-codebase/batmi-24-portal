@@ -20,10 +20,13 @@ export async function getCategories(): Promise<Category[]> {
 export async function getCategoryBySlug(
   slug: string
 ): Promise<Category | null> {
+  // Decode URL-encoded slugs to handle spaces and special characters
+  const decodedSlug = decodeURIComponent(slug);
+
   const { data, error } = await supabase
     .from("categories")
     .select("*")
-    .eq("slug", slug)
+    .eq("slug", decodedSlug)
     .single();
 
   if (error) {
@@ -69,6 +72,9 @@ export async function getFeaturedArticles(
 
 // Get an article by slug
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  // Decode URL-encoded slugs to handle spaces and special characters
+  const decodedSlug = decodeURIComponent(slug);
+
   const { data, error } = await supabase
     .from("articles")
     .select(
@@ -77,7 +83,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       category:category_id(*)
     `
     )
-    .eq("slug", slug)
+    .eq("slug", decodedSlug)
     .single();
 
   if (error) {

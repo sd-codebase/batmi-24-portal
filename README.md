@@ -1,4 +1,4 @@
-# The Civic Diary - SEO-Optimized Next.js Website
+# Batmi24 - SEO-Optimized Next.js Website
 
 A fully SEO-optimized Next.js website application for news and articles focused on civic matters and community initiatives.
 

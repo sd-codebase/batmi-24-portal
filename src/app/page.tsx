@@ -5,7 +5,7 @@ import { getCategories } from "./lib/api";
 import { Category } from "./types";
 
 export const metadata: Metadata = {
-  title: "The Civic Diary - Latest News and Articles",
+  title: "Batmi24 - Latest News and Articles",
   description:
     "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
   keywords:

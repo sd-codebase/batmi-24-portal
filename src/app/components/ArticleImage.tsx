@@ -21,11 +21,11 @@ const ArticleImage = ({ imageUrl, title, height = 350 }: ArticleImageProps) => {
         <div className="absolute top-0 left-0 bg-[#af0000] text-white h-full w-full text-sm px-2 py-1 rounded-lg">
           <div className="flex h-full flex-col justify-between items-center py-4">
             <Image
-              src={"/brand/the-civic-diary-long-white.jpeg"}
+              src={"/brand/batmi-24-long-white.png"}
               alt={title}
               width={350}
               height={200}
-              className="rounded-lg object-contain my-2"
+              className="rounded-lg object-contain my-2 py-2 bg-white px-2"
             />
             <div>
               <p className="text-lg font-bold">{title}</p>

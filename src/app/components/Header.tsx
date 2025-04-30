@@ -22,11 +22,18 @@ async function Header() {
       <div className="bg-white py-4">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="flex justify-center">
-            <Link href="/">
+            <Link
+              href="/"
+              style={{
+                backgroundColor: "#af0000",
+                padding: "1rem 1rem",
+                borderRadius: "0.5rem",
+              }}
+            >
               <Image
-                src="/brand/the-civic-diary-long-red.jpeg"
-                alt="The Civic Diary"
-                width={650}
+                src="/brand/batmi-24-long-red.png"
+                alt="Batmi24"
+                width={320}
                 height={130}
                 className="h-auto rounded-lg"
                 priority

@@ -17,15 +17,15 @@ export default function ArticleJsonLd({ article, url }: ArticleJsonLdProps) {
     dateModified: article.published_at || article.published_at,
     author: {
       "@type": "Organization",
-      name: "The Civic Diary",
-      url: "https://thecivicdiary.com",
+      name: "Batmi24",
+      url: "https://batmi24.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "The Civic Diary",
+      name: "Batmi24",
       logo: {
         "@type": "ImageObject",
-        url: "https://thecivicdiary.com/logo.png",
+        url: "https://batmi24.com/logo.png",
       },
     },
     mainEntityOfPage: {

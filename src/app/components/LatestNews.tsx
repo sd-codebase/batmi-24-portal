@@ -1,7 +1,6 @@
-import { supabase } from "../lib/supabase";
-import Link from "next/link";
-import Image from "next/image";
 import { BoltIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import { supabase } from "../lib/supabase";
 import ArticleImage from "./ArticleImage";
 
 type NewsItem = {
@@ -67,7 +66,7 @@ async function LatestNews() {
 
         {/* Column 2 - Secondary content (4 cols) */}
         <div className="md:col-span-4 flex flex-col gap-4">
-          {news.slice(1, 7).map((item, index) => (
+          {news.slice(1, 7).map((item) => (
             <div key={item.id} className="border-b border-gray-200 pb-4">
               <div className="block">
                 {item.category && item.category_slug && (

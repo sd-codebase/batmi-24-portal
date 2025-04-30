@@ -1,13 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Metadata } from "next";
-import { getArticleBySlug, getArticles } from "../../lib/api";
-import { Article } from "../../types";
-import ArticleJsonLd from "../../components/ArticleJsonLd";
 import formatDate from "@/app/lib/transform-date";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
-import ShareButtons from "../../components/ShareButtons";
+import { Metadata } from "next";
+import Link from "next/link";
 import ArticleImage from "../../components/ArticleImage";
+import ArticleJsonLd from "../../components/ArticleJsonLd";
+import ShareButtons from "../../components/ShareButtons";
+import { getArticleBySlug, getArticles } from "../../lib/api";
+import { Article } from "../../types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -20,13 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) {
     return {
-      title: "Article Not Found - The Civic Diary",
+      title: "Article Not Found - Batmi24",
       description: "The requested article could not be found.",
     };
   }
 
   return {
-    title: article.meta_title || `${article.title} - The Civic Diary`,
+    title: article.meta_title || `${article.title} - Batmi24`,
     description: article.meta_description || article.excerpt,
     keywords: article.category
       ? `${article.category.name.toLowerCase()}, ${article.title.toLowerCase()}, civic engagement, news, article`
@@ -85,7 +84,7 @@ export default async function ArticlePage({ params }: Props) {
     );
   }
 
-  const articleUrl = `https://thecivicdiary.com/articles/${article.slug}`;
+  const articleUrl = `https://batmi24.com/articles/${article.slug}`;
 
   return (
     <>
@@ -99,8 +98,8 @@ export default async function ArticlePage({ params }: Props) {
         )}
         <meta itemProp="datePublished" content={article.published_at} />
         <meta itemProp="dateModified" content={article.published_at} />
-        <meta itemProp="author" content="The Civic Diary" />
-        <meta itemProp="publisher" content="The Civic Diary" />
+        <meta itemProp="author" content="Batmi24" />
+        <meta itemProp="publisher" content="Batmi24" />
 
         <div className="mb-8">
           <nav

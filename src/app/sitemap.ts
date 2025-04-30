@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getArticles, getCategories } from "./lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://thecivicdiary.com";
+  const baseUrl = "https://batmi24.com";
 
   // Get all articles and categories
   const articles = await getArticles();
@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Create article URLs
   const articleUrls = articles.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
-    lastModified: new Date(article.updated_at || article.published_at),
+    lastModified: new Date(article.published_at),
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));

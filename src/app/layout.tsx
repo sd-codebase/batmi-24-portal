@@ -13,27 +13,24 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thecivicdiary.com"),
-  title: "The Civic Diary - News and Articles",
+  metadataBase: new URL("https://batmi24.com"),
+  title: "Batmi24 - News and Articles",
   description:
     "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
   keywords: "news, articles, civic engagement, community, journalism",
-  authors: [{ name: "The Civic Diary Team" }],
+  authors: [{ name: "Batmi24 Team" }],
   robots: "index, follow",
   icons: {
-    icon: [
-      { url: "/icon.png" },
-      { url: "/brand/the-civic-diary-small-red.jpeg" },
-    ],
+    icon: [{ url: "/icon.png" }, { url: "/brand/batmi-24-square-red.png" }],
     apple: "/apple-icon.png",
     shortcut: "/icon.png",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://thecivicdiary.com",
-    siteName: "The Civic Diary",
-    title: "The Civic Diary - Talks Straight, No Filler, Just Facts",
+    url: "https://batmi24.com",
+    siteName: "Batmi24",
+    title: "Batmi24 - Talks Straight, No Filler, Just Facts",
     description:
       "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
     images: [
@@ -41,13 +38,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "The Civic Diary",
+        alt: "Batmi24",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Civic Diary - Talks Straight, No Filler, Just Facts",
+    title: "Batmi24 - Talks Straight, No Filler, Just Facts",
     description:
       "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
     images: ["/twitter-image.jpg"],

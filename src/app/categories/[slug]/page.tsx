@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Metadata } from "next";
-import {
-  getCategoryBySlug,
-  getArticlesByCategory,
-  getAllArticlesPaginated,
-} from "../../lib/api";
-import { Category, Article } from "../../types";
 import formatDate from "@/app/lib/transform-date";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  getAllArticlesPaginated,
+  getArticlesByCategory,
+  getCategoryBySlug,
+} from "../../lib/api";
+import { Category } from "../../types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,15 +23,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Special case for tajya-batmya
   if (slug === "tajya-batmya") {
     return {
-      title: "Marathi News - The Civic Diary",
-      description:
-        "Browse all the latest Marathi news articles on The Civic Diary.",
+      title: "Marathi News - Batmi24",
+      description: "Browse all the latest Marathi news articles on Batmi24.",
       keywords:
         "marathi news, articles, latest news, civic engagement, marathi",
       openGraph: {
-        title: "Marathi News - The Civic Diary",
-        description:
-          "Browse all the latest Marathi news articles on The Civic Diary.",
+        title: "Marathi News - Batmi24",
+        description: "Browse all the latest Marathi news articles on Batmi24.",
       },
     };
   }
@@ -40,22 +38,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!category) {
     return {
-      title: "Category Not Found - The Civic Diary",
+      title: "Category Not Found - Batmi24",
       description: "The requested category could not be found.",
     };
   }
 
   return {
-    title: `${category.name} - The Civic Diary`,
+    title: `${category.name} - Batmi24`,
     description:
       category.description ||
-      `Browse all articles in the ${category.name} category on The Civic Diary.`,
+      `Browse all articles in the ${category.name} category on Batmi24.`,
     keywords: `${category.name.toLowerCase()}, articles, news, civic engagement, ${category.name.toLowerCase()} news`,
     openGraph: {
-      title: `${category.name} - The Civic Diary`,
+      title: `${category.name} - Batmi24`,
       description:
         category.description ||
-        `Browse all articles in the ${category.name} category on The Civic Diary.`,
+        `Browse all articles in the ${category.name} category on Batmi24.`,
     },
   };
 }

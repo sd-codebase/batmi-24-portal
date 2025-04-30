@@ -11,22 +11,22 @@ export default async function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <div className="mb-4">
+            <div className="">
               <Image
-                src="/brand/the-civic-diary-long-white.jpeg"
-                alt="The Civic Diary"
+                src="/brand/batmi-24-long-white.png"
+                alt="Batmi24"
                 width={200}
                 height={60}
-                className="object-contain rounded-lg"
+                className="object-contain rounded-lg bg-white"
+                style={{ padding: "1rem" }}
               />
             </div>
-            <p className="text-sm mb-4">
+            <p className="text-sm mb-4 py-2">
               Delivering insightful news and articles on civic matters and
               community initiatives.
             </p>
             <p>
-              &copy; {new Date().getFullYear()} The Civic Diary. All rights
-              reserved.
+              &copy; {new Date().getFullYear()} Batmi24. All rights reserved.
             </p>
           </div>
           <div>

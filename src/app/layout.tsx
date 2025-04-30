@@ -20,12 +20,20 @@ export const metadata: Metadata = {
   keywords: "news, articles, civic engagement, community, journalism",
   authors: [{ name: "The Civic Diary Team" }],
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: "/icon.png" },
+      { url: "/brand/the-civic-diary-small-red.jpeg" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://thecivicdiary.com",
     siteName: "The Civic Diary",
-    title: "The Civic Diary - News and Articles",
+    title: "The Civic Diary - Talks Straight, No Filler, Just Facts",
     description:
       "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
     images: [
@@ -39,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Civic Diary - News and Articles",
+    title: "The Civic Diary - Talks Straight, No Filler, Just Facts",
     description:
       "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
     images: ["/twitter-image.jpg"],

@@ -2,6 +2,7 @@ import { supabase } from "../lib/supabase";
 import Link from "next/link";
 import Image from "next/image";
 import { BoltIcon } from "@heroicons/react/24/solid";
+import ArticleImage from "./ArticleImage";
 
 type NewsItem = {
   id: number;
@@ -10,6 +11,7 @@ type NewsItem = {
   content: string;
   author: string;
   category: string;
+  category_slug: string;
   published_at: string;
   image_url: string;
 };
@@ -41,25 +43,25 @@ async function LatestNews() {
         <div className="md:col-span-8 flex flex-col gap-4">
           {/* Featured Article */}
           <div className="border-b border-gray-200 pb-4">
-            <div className="mb-3 max-w-full">
-              <Image
-                src={
-                  news[0].image_url || "/brand/the-civic-diary-small-red.jpeg"
-                }
-                alt={news[0].title}
-                width={800}
-                height={450}
-                className="rounded-lg object-contain w-full"
-              />
+            <ArticleImage imageUrl={news[0].image_url} title={news[0].title} />
+            <div className="block">
+              {news[0].category && news[0].category_slug && (
+                <Link
+                  href={`/categories/${news[0].category_slug}`}
+                  className="text-sm font-semibold uppercase text-[#af0000] mb-1 inline-block hover:underline"
+                >
+                  {news[0].category}
+                </Link>
+              )}
+              <Link href={`/articles/${news[0].slug}`}>
+                <h3 className="font-bold text-lg hover:text-[#af0000] transition-colors mb-2">
+                  {news[0].title}
+                </h3>
+                <p className="text-gray-600 line-clamp-3">
+                  {news[0].content.replace(/<[^>]*>/g, "")}
+                </p>
+              </Link>
             </div>
-            <Link href={`/articles/${news[0].slug}`} className="block">
-              <h3 className="font-bold text-lg hover:text-[#af0000] transition-colors mb-2">
-                {news[0].title}
-              </h3>
-              <p className="text-gray-600 line-clamp-2">
-                {news[0].content.replace(/<[^>]*>/g, "")}
-              </p>
-            </Link>
           </div>
         </div>
 
@@ -67,11 +69,21 @@ async function LatestNews() {
         <div className="md:col-span-4 flex flex-col gap-4">
           {news.slice(1, 7).map((item, index) => (
             <div key={item.id} className="border-b border-gray-200 pb-4">
-              <Link href={`/articles/${item.slug}`} className="block">
-                <h3 className="font-bold hover:text-[#af0000] transition-colors mb-2">
-                  {item.title}
-                </h3>
-              </Link>
+              <div className="block">
+                {item.category && item.category_slug && (
+                  <Link
+                    href={`/categories/${item.category_slug}`}
+                    className="text-sm font-semibold uppercase text-[#af0000] mb-1 inline-block hover:underline"
+                  >
+                    {item.category}
+                  </Link>
+                )}
+                <Link href={`/articles/${item.slug}`}>
+                  <h3 className="font-bold hover:text-[#af0000] transition-colors mb-2 line-clamp-1">
+                    {item.title}
+                  </h3>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -106,7 +118,8 @@ async function getLatestArticles(): Promise<NewsItem[]> {
         published_at,
         image_url,
         categories (
-          name
+          name,
+          slug
         )
         `
       )
@@ -127,6 +140,7 @@ async function getLatestArticles(): Promise<NewsItem[]> {
       content: item.content,
       author: item.author,
       category: item.categories?.name || "",
+      category_slug: item.categories?.slug || "",
       published_at: item.published_at,
       image_url: item.image_url,
     }));

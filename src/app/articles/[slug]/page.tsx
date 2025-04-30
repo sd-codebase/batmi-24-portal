@@ -7,6 +7,7 @@ import ArticleJsonLd from "../../components/ArticleJsonLd";
 import formatDate from "@/app/lib/transform-date";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/outline";
 import ShareButtons from "../../components/ShareButtons";
+import ArticleImage from "../../components/ArticleImage";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -102,24 +103,41 @@ export default async function ArticlePage({ params }: Props) {
         <meta itemProp="publisher" content="The Civic Diary" />
 
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-            <Link href="/" className="hover:text-[#af0000] font-bold text-lg">
-              Marathi News
-            </Link>
-            {article.category && (
-              <>
-                <span>&gt;</span>
+          <nav
+            aria-label="Breadcrumb"
+            className="overflow-x-auto mb-4 scrollbar-hide"
+          >
+            <ol className="flex flex-wrap md:flex-nowrap items-center text-sm md:text-base gap-1 md:gap-2">
+              <li className="flex items-center">
                 <Link
-                  href={`/categories/${article.category.slug}`}
-                  className="hover:text-[#af0000] font-bold text-lg"
+                  href="/"
+                  className="hover:text-[#af0000] font-semibold whitespace-nowrap"
                 >
-                  {article.category.name}
+                  Marathi News
                 </Link>
-              </>
-            )}
-            <span>&gt;</span>
-            <span className="font-bold text-lg">{article.title}</span>
-          </div>
+              </li>
+              {article.category && (
+                <li className="flex items-center">
+                  <span className="mx-1 text-gray-500">&gt;</span>
+                  <Link
+                    href={`/categories/${article.category.slug}`}
+                    className="hover:text-[#af0000] font-semibold whitespace-nowrap"
+                  >
+                    {article.category.name}
+                  </Link>
+                </li>
+              )}
+              <li className="flex items-center">
+                <span className="mx-1 text-gray-500">&gt;</span>
+                <span
+                  className="font-semibold text-gray-700 truncate max-w-[180px] sm:max-w-xs md:max-w-none"
+                  title={article.title}
+                >
+                  {article.title}
+                </span>
+              </li>
+            </ol>
+          </nav>
 
           <h1
             className="text-3xl md:text-4xl font-bold mb-4"
@@ -151,41 +169,47 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </div>
 
-        {article.featured_image ? (
-          <div className="mx-auto mb-8">
-            <div className="relative max-w-full" style={{ maxHeight: "500px" }}>
-              <Image
-                src={article.featured_image}
-                alt={article.title}
-                width={1200}
-                height={675}
-                className="rounded-lg mx-auto object-contain"
-                priority={true}
-                itemProp="image"
-              />
-            </div>
-          </div>
-        ) : (
-          <div className="mx-auto mb-8">
-            <div className="relative max-w-full" style={{ maxHeight: "500px" }}>
-              <Image
-                src="/brand/the-civic-diary-small-red.jpeg"
-                alt={article.title}
-                width={800}
-                height={450}
-                className="rounded-lg mx-auto object-contain"
-                priority={true}
-                itemProp="image"
-              />
-            </div>
-          </div>
-        )}
+        <div className="mx-auto mb-8 md:w-[700px] sm:w-full">
+          <ArticleImage
+            imageUrl={article.image_url}
+            title={article.title}
+            height={300}
+          />
+        </div>
 
         <div
           className="prose prose-lg max-w-none mb-12 text-lg"
           itemProp="articleBody"
         >
-          <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          {article.content.includes("\n") ? (
+            // Split content by newlines and create paragraph for each segment with empty paragraphs in between (except after the last one)
+            article.content
+              .split("\n")
+              .filter((segment) => segment.trim() !== "")
+              .flatMap((segment, index, array) => {
+                const contentParagraph = (
+                  <p
+                    key={`content-${index}`}
+                    dangerouslySetInnerHTML={{ __html: segment }}
+                  />
+                );
+
+                // Add an empty paragraph after each content paragraph except the last one
+                if (index < array.length - 1) {
+                  return [
+                    contentParagraph,
+                    <p key={`space-${index}`} className="empty-space">
+                      &nbsp;
+                    </p>,
+                  ];
+                }
+
+                return [contentParagraph];
+              })
+          ) : (
+            // If there are no newlines, render the content as is
+            <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          )}
         </div>
         {/* Tags section */}
         {article.tags && article.tags.length > 0 && (
@@ -196,7 +220,7 @@ export default async function ArticlePage({ params }: Props) {
                 href={`/tags/${tag}`}
                 className="inline-block px-3 py-1 rounded-full text-white bg-[#af0000] hover:bg-[#8f0000] transition-colors text-sm font-medium"
               >
-                #{tag}
+                {tag}
               </Link>
             ))}
           </div>

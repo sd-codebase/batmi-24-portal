@@ -11,6 +11,7 @@ export interface Category {
 
 export interface Article {
   id: number;
+  image_url: string | null;
   slug: string;
   title: string;
   content: string;

@@ -15,7 +15,7 @@ export interface Article {
   slug: string;
   title: string;
   content: string;
-  excerpt: string;
+  description: string;
   category_id: number;
   category?: Category;
   featured_image?: string;

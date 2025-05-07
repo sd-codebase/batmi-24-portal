@@ -11,7 +11,7 @@ export default function ArticleJsonLd({ article, url }: ArticleJsonLdProps) {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: article.title,
-    description: article.excerpt,
+    description: article.description,
     image: article.featured_image ? [article.featured_image] : [],
     datePublished: article.published_at,
     dateModified: article.published_at || article.published_at,

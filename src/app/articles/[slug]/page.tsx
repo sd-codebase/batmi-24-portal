@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 // Fix type issues by defining the function without explicit types
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const slug = (await params).slug;
   const article = await getArticleBySlug(slug);
 
   if (!article) {
@@ -29,13 +29,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: article.meta_title || `${article.title} - Batmi24`,
-    description: article.meta_description || article.excerpt,
+    description: article.meta_description || article.description,
     keywords: article.category
       ? `${article.category.name.toLowerCase()}, ${article.title.toLowerCase()}, civic engagement, news, article`
       : `${article.title.toLowerCase()}, civic engagement, news, article`,
     openGraph: {
       title: article.meta_title || article.title,
-      description: article.meta_description || article.excerpt,
+      description: article.meta_description || article.description,
       type: "article",
       publishedTime: article.published_at,
       ...(article.featured_image && {
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: article.meta_title || article.title,
-      description: article.meta_description || article.excerpt,
+      description: article.meta_description || article.description,
       ...(article.featured_image && {
         images: [article.featured_image],
       }),
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }) {
 
 // Remove explicit typing for params to allow Next.js to handle it
 export default async function ArticlePage({ params }) {
-  const slug = params.slug;
+  const slug = (await params).slug;
   const article: Article | null = await getArticleBySlug(slug);
 
   if (!article) {
@@ -87,7 +87,7 @@ export default async function ArticlePage({ params }) {
 
       <article itemScope itemType="https://schema.org/NewsArticle">
         <meta itemProp="headline" content={article.title} />
-        <meta itemProp="description" content={article.excerpt} />
+        <meta itemProp="description" content={article.description} />
         {article.featured_image && (
           <meta itemProp="image" content={article.featured_image} />
         )}
@@ -139,6 +139,7 @@ export default async function ArticlePage({ params }) {
           >
             {article.title}
           </h1>
+          <p className="text-lg mb-3 line-clamp-2">{article.description}</p>
 
           <div className="flex items-center text-lg text-gray-600 mb-6">
             <span className="text-gray-600 flex items-center">

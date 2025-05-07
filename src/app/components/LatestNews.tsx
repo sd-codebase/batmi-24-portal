@@ -8,6 +8,7 @@ type NewsItem = {
   id: number;
   title: string;
   slug: string;
+  description: string;
   content: string;
   author: string;
   category: string;
@@ -67,7 +68,7 @@ async function LatestNews() {
 
         {/* Column 2 - Secondary content (4 cols) */}
         <div className="md:col-span-4 flex flex-col gap-4">
-          {news.slice(1, 7).map((item) => (
+          {news.slice(1, 6).map((item) => (
             <div key={item.id} className="border-b border-gray-200 pb-4">
               <div className="block">
                 {item.category && item.category_slug && (
@@ -82,6 +83,7 @@ async function LatestNews() {
                   <h3 className="font-bold hover:text-[#af0000] transition-colors mb-2 line-clamp-1">
                     {item.title}
                   </h3>
+                  <p className="description line-clamp-1">{item.description}</p>
                 </Link>
               </div>
             </div>
@@ -116,6 +118,7 @@ async function getLatestArticles(): Promise<NewsItem[]> {
         title,
         slug,
         content,
+        description,
         author,
         category_id,
         published_at,
@@ -141,6 +144,7 @@ async function getLatestArticles(): Promise<NewsItem[]> {
       title: item.title,
       slug: item.slug,
       content: item.content,
+      description: item.description,
       author: item.author,
       category: item.categories?.name || "",
       category_slug: item.categories?.slug || "",

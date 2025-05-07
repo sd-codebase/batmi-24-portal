@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 // Fix type issues by defining the function without explicit types
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const slug = (await params).slug;
 
   // Special case for tajya-batmya
   if (slug === "tajya-batmya") {
@@ -62,10 +62,11 @@ export async function generateMetadata({ params }) {
 
 // Remove explicit typing for params to allow Next.js to handle it
 export default async function CategoryPage({ params, searchParams }) {
-  const slug = params.slug;
-  const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1;
+  const slug = (await params).slug;
+  const searchParam = await searchParams;
+  const page = searchParam?.page ? parseInt(searchParam.page, 10) : 1;
 
-  const pageSize = 15; // Number of articles per page
+  const pageSize = 12; // Number of articles per page
 
   // Special case for tajya-batmya (latest news)
   const isTajyaBatmya = slug === "marathi-tajya-batmya";
@@ -152,7 +153,9 @@ export default async function CategoryPage({ params, searchParams }) {
                       {article.title}
                     </h2>
                   </Link>
-                  <p className="text-sm mb-3">{article.excerpt}</p>
+                  <p className="text-sm mb-3 line-clamp-2">
+                    {article.description}
+                  </p>
 
                   <div className="flex justify-start items-center text-sm gap-4">
                     <span className="text-gray-600 flex items-center">

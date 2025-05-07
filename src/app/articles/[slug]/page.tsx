@@ -22,17 +22,19 @@ export async function generateMetadata({ params }) {
 
   if (!article) {
     return {
-      title: "Article Not Found - Batmi24",
+      title: "मराठी बातम्या | marathi news | महाराष्ट्र बातम्या | Batmi 24",
       description: "The requested article could not be found.",
     };
   }
 
   return {
-    title: article.meta_title || `${article.title} - Batmi24`,
+    title:
+      article.meta_title ||
+      `${article.title} - मराठी बातम्या | marathi news | महाराष्ट्र बातम्या | Batmi 24`,
     description: article.meta_description || article.description,
     keywords: article.category
-      ? `${article.category.name.toLowerCase()}, ${article.title.toLowerCase()}, civic engagement, news, article`
-      : `${article.title.toLowerCase()}, civic engagement, news, article`,
+      ? `${article.category.name.toLowerCase()}, ${article.title.toLowerCase()}, मराठी बातम्या, marathi news, महाराष्ट्र बातम्या - Batmi 24`
+      : `${article.title.toLowerCase()}, मराठी बातम्या, marathi news, महाराष्ट्र बातम्या - Batmi 24`,
     openGraph: {
       title: article.meta_title || article.title,
       description: article.meta_description || article.description,
@@ -85,7 +87,7 @@ export default async function ArticlePage({ params }) {
     <>
       <ArticleJsonLd article={article} url={articleUrl} />
 
-      <article itemScope itemType="https://schema.org/NewsArticle">
+      <article itemScope itemType="https://schema.org/MarathiNewsArticle">
         <meta itemProp="headline" content={article.title} />
         <meta itemProp="description" content={article.description} />
         {article.featured_image && (

@@ -18,6 +18,8 @@ export async function generateStaticParams() {
   return [];
 }
 
+const title = `महाराष्ट्र ब्रेकिंग न्यूज, मराठी बातम्या, marathi news, maharashtra new, live marathi news, मनोरंजन बातम्या - Batmi 24`;
+
 // Fix type issues by defining the function without explicit types
 export async function generateMetadata({ params }) {
   const slug = (await params).slug;
@@ -25,13 +27,15 @@ export async function generateMetadata({ params }) {
   // Special case for tajya-batmya
   if (slug === "tajya-batmya") {
     return {
-      title: "Marathi News - Batmi24",
-      description: "Browse all the latest Marathi news articles on Batmi24.",
+      title: `ताज्या बातम्या, ${title}`,
+      description:
+        "ताज्या महाराष्ट्र बातम्या, ब्रेकिंग न्यूज, राजकारण, मनोरंजन, आणि क्राईम अपडेट्स. batmi24.com वर वाचा अचूक आणि वेगवान मराठी बातम्या!",
       keywords:
-        "marathi news, articles, latest news, civic engagement, marathi",
+        "ताज्या बातम्या, महाराष्ट्र ब्रेकिंग न्यूज, मराठी बातम्या, ग्रामीण बातम्या, मनोरंजन बातम्या, marathi, marathi news, marathi articles, marathi news articles, marathi news today, marathi news live, marathi news paper, marathi news app, marathi news website",
       openGraph: {
-        title: "Marathi News - Batmi24",
-        description: "Browse all the latest Marathi news articles on Batmi24.",
+        title: "Marathi News Updated - Batmi24",
+        description:
+          "ताज्या महाराष्ट्र बातम्या, ब्रेकिंग न्यूज, राजकारण, मनोरंजन, आणि क्राईम अपडेट्स. batmi24.com वर वाचा अचूक आणि वेगवान मराठी बातम्या!",
       },
     };
   }
@@ -40,22 +44,22 @@ export async function generateMetadata({ params }) {
 
   if (!category) {
     return {
-      title: "Category Not Found - Batmi24",
-      description: "The requested category could not be found.",
+      title:
+        "ताज्या महाराष्ट्र बातम्या, ब्रेकिंग न्यूज, राजकारण, मनोरंजन, मुंबई, पुणे, शेतकरी, सरकारी योजना, आणि ग्रामीण बातम्या - Batmi24",
+      description:
+        "ताज्या मराठी बातम्या, ताज्या महाराष्ट्र बातम्या, ब्रेकिंग न्यूज, राजकारण, मनोरंजन, आणि क्राईम अपडेट्स. batmi24.com वर वाचा अचूक आणि वेगवान मराठी बातम्या!",
     };
   }
 
   return {
     title: `${category.name} - Batmi24`,
-    description:
-      category.description ||
-      `Browse all articles in the ${category.name} category on Batmi24.`,
-    keywords: `${category.name.toLowerCase()}, articles, news, civic engagement, ${category.name.toLowerCase()} news`,
+    description: category.description || `${category.name} बातम्या Batmi24 वर.`,
+    keywords: `${category.name.toLowerCase()}, ${title}, ${category.name.toLowerCase()} news`,
     openGraph: {
       title: `${category.name} - Batmi24`,
       description:
         category.description ||
-        `Browse all articles in the ${category.name} category on Batmi24.`,
+        `${category.name} news वाचा batmi24.com वर, अचूक आणि वेगवान मराठी बातम्या!`,
     },
   };
 }

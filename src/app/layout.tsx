@@ -14,11 +14,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://batmi24.com"),
-  title: "Batmi24 - News and Articles",
+  title:
+    "ताज्या महाराष्ट्र बातम्या व ब्रेकिंग न्यूज | batmi24.com | मराठी बातम्या | Batmi 24 | Latest Marathi News",
   description:
-    "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
-  keywords: "news, articles, civic engagement, community, journalism",
-  authors: [{ name: "Batmi24 Team" }],
+    "महाराष्ट्र, राजकारण, मनोरंजन, आणि शेती बातम्यांचे अचूक अपडेट्स. batmi24.com वर वाचा ताज्या व्हायरल न्यूज, Latest News, आणि ब्रेकिंग न्यूज.",
+  keywords:
+    "ताज्या बातम्या, Latest News, Maharashtra News, Marathi News, महाराष्ट्र ब्रेकिंग न्यूज, Maharashtra Breaking News, मुंबई बातम्या, मराठी वृत्तपत्र, ताज्या घटना, Maharashtra News Today, Maharashtra News Live, Maharashtra News Paper, Maharashtra News Website",
+  authors: [{ name: "Batmi24 Digital Team" }],
   robots: "index, follow",
   icons: {
     icon: [{ url: "/icon.png" }, { url: "/brand/batmi-24-square-red.png" }],
@@ -30,9 +32,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://batmi24.com",
     siteName: "Batmi24",
-    title: "Batmi24 - Talks Straight, No Filler, Just Facts",
+    title:
+      "Batmi24 - मराठीतून, महाराष्ट्रासाठी, थेट आणि नेमक्या ताज्या बातम्या!",
     description:
-      "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
+      "महाराष्ट्र, राजकारण, मनोरंजन, आणि शेती बातम्यांचे अचूक अपडेट्स. batmi24.com वर वाचा ताज्या व्हायरल न्यूज, Latest News, आणि ब्रेकिंग न्यूज.",
     images: [
       {
         url: "/og-image.jpg",
@@ -44,9 +47,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Batmi24 - Talks Straight, No Filler, Just Facts",
+    title:
+      "Batmi24 - मराठीतून, महाराष्ट्रासाठी, थेट आणि नेमक्या ताज्या बातम्या!",
     description:
-      "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
+      "महाराष्ट्र, राजकारण, मनोरंजन, आणि शेती बातम्यांचे अचूक अपडेट्स. batmi24.com वर वाचा ताज्या व्हायरल न्यूज, Latest News, आणि ब्रेकिंग न्यूज.",
     images: ["/twitter-image.jpg"],
   },
 };

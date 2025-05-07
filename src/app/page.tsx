@@ -5,11 +5,12 @@ import { getCategories } from "./lib/api";
 import { Category } from "./types";
 
 export const metadata: Metadata = {
-  title: "Batmi24 - Latest News and Articles",
+  title:
+    "ताज्या महाराष्ट्र बातम्या व ब्रेकिंग न्यूज | batmi24.com | मराठी बातम्या | Batmi 24 | Latest Marathi News",
   description:
-    "Stay informed with the latest news, insights, and articles on civic matters and community initiatives.",
+    "महाराष्ट्र, राजकारण, मनोरंजन, आणि शेती बातम्यांचे अचूक अपडेट्स. batmi24.com वर वाचा ताज्या व्हायरल न्यूज, Latest News, आणि ब्रेकिंग न्यूज.",
   keywords:
-    "news, articles, civic engagement, community, journalism, latest news",
+    "ताज्या बातम्या, Latest News, Maharashtra News, Marathi News, महाराष्ट्र ब्रेकिंग न्यूज, Maharashtra Breaking News, मुंबई बातम्या, मराठी वृत्तपत्र, ताज्या घटना, Maharashtra News Today, Maharashtra News Live, Maharashtra News Paper, Maharashtra News Website",
 };
 
 export default async function Home() {

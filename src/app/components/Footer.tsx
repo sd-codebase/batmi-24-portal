@@ -21,9 +21,8 @@ export default async function Footer() {
                 style={{ padding: "1rem" }}
               />
             </div>
-            <p className="text-sm mb-4 py-2">
-              Delivering insightful news and articles on civic matters and
-              community initiatives.
+            <p className="text-lg mb-4 py-2">
+              मराठीतून, महाराष्ट्रासाठी, थेट आणि नेमक्या बातम्या!
             </p>
             <p>
               &copy; {new Date().getFullYear()} Batmi24. All rights reserved.

@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <GoogleAnalytics gaId="G-62QTPB7SDG" />
         <Header />
         <ScrollingNews />
         {/* Adjusted padding since header is now sticky instead of fixed */}
